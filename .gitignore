@@ -1,0 +1,28 @@
+# Compiler files
+cache/
+out/
+
+# Ignores development broadcast logs
+!/broadcast
+/broadcast/*/31337/
+/broadcast/**/dry-run/
+run-latest.json
+
+# Docs
+docs/
+
+# Dotenv file
+.env
+
+#misc
+node_modules
+.DS_Store
+.vscode
+lcov.info
+report/
+.idea/
+*.swp
+
+# certora
+.certora_internal/*
+emv-*/*
