@@ -101,7 +101,7 @@ contract FuzzRentRepayPPS is BaseTest, BAMMTestHelper {
     }
 
     function rentRepayTest(uint256 reserve0, uint256 reserve1, uint256 rent, uint256 repay, uint256 wait) public {
-        setUp();
+        // setUp();
 
         /// Generate parameters
         reserve0 = bound(reserve0, 1_000_000_000, 2e33);

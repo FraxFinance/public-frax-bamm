@@ -507,17 +507,17 @@ contract BAMMUIHelper {
         address token1;
         uint256 tvlInToken0;
         uint256 tvlInToken1;
-    }    
+    }
 
     function getTVL(BAMM bamm) public view returns (TVLInfo memory tvl) {
         IFraxswapPair pair = bamm.pair();
         uint256 pairTotalSupply = pair.totalSupply();
         uint256 pairInBAMM = pair.balanceOf(address(bamm));
         (uint112 reserve0, uint112 reserve1, ) = pair.getReserves();
-        uint256 tvlToken0 = reserve0 * pairInBAMM / pairTotalSupply + bamm.token0().balanceOf(address(bamm));
-        uint256 tvlToken1 = reserve1 * pairInBAMM / pairTotalSupply + bamm.token1().balanceOf(address(bamm));
-        uint256 tvlInToken0 = tvlToken0 + tvlToken1 * reserve0 / reserve1;
-        uint256 tvlInToken1 = tvlToken1 + tvlToken0 * reserve1 / reserve0;
+        uint256 tvlToken0 = (reserve0 * pairInBAMM) / pairTotalSupply + bamm.token0().balanceOf(address(bamm));
+        uint256 tvlToken1 = (reserve1 * pairInBAMM) / pairTotalSupply + bamm.token1().balanceOf(address(bamm));
+        uint256 tvlInToken0 = tvlToken0 + (tvlToken1 * reserve0) / reserve1;
+        uint256 tvlInToken1 = tvlToken1 + (tvlToken0 * reserve1) / reserve0;
         tvl = TVLInfo({
             token0: address(bamm.token0()),
             token1: address(bamm.token1()),
@@ -540,7 +540,7 @@ contract BAMMUIHelper {
     function fraxswapFeesEarned(IFraxswapPair pair) public view returns (uint256) {
         (uint112 reserve0, uint112 reserve1, ) = pair.getReserves();
         uint256 pairTotalSupply = pair.totalSupply();
-        return (Math.sqrt(uint256(reserve0) * reserve1) - pairTotalSupply) * 1E18 / pairTotalSupply;
+        return ((Math.sqrt(uint256(reserve0) * reserve1) - pairTotalSupply) * 1E18) / pairTotalSupply;
     }
 
     function fraxswapFeesEarnedMulti(IFraxswapPair[] memory pairs) public view returns (uint256[] memory fees) {
