@@ -1,5 +1,5 @@
 # Frax Finance: BAMM
-[![Node.js CI](https://github.com/FraxFinance/dev-frax-bamm/actions/workflows/main.yml/badge.svg)](https://github.com/FraxFinance/dev-frax-bamm/actions/workflows/main.yml)
+[![Node.js CI](https://github.com/FraxFinance/public-frax-bamm/actions/workflows/main.yml/badge.svg)](https://github.com/FraxFinance/public-frax-bamm/actions/workflows/main.yml)
 
 ### Introduction
 
